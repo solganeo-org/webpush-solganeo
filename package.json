@@ -1,0 +1,34 @@
+{
+  "name": "webpush-solganeo",
+  "version": "1.0.0",
+  "description": "This project seeks to create a server to send webpush-notifications using SFMC and the journey builder tool.",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tsc",
+    "start": "node dist/index.js",
+    "dev": "concurrently \"npx tsc --watch \" \"nodemon -q dist/index.js\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/solganeo-org/webpush-solganeo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/solganeo-org/webpush-solganeo/issues"
+  },
+  "homepage": "https://github.com/solganeo-org/webpush-solganeo#readme",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/node": "^17.0.41",
+    "concurrently": "^7.2.1",
+    "nodemon": "^2.0.16",
+    "ts-node": "^10.8.1",
+    "typescript": "^4.7.3"
+  }
+}
