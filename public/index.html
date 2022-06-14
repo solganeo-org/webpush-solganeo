@@ -5,6 +5,8 @@
     <meta charset="utf-8" />
     <title>Custom Journey Builder Activity</title>
 
+    <link rel="stylesheet" type="text/css" href="vendor/salesforce-lightning/assets/styles/salesforce-lightning-design-system.min.css" />
+
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/require.js"></script>
     <script type="text/javascript">
@@ -34,28 +36,33 @@
     </style>
   </head>
   <body>
-    <div id="step1" class="step">
-      Select your SMS message:
-      <select id="select1">
-        <option value="">Select an option</option>
-        <option value="someMessage">Some SMS</option>
-        <option value="anotherMessage">Another SMS</option>
-        <option value="thirdMessage">Third SMS</option>
-        <option value="unknownMessage">Unknown SMS</option>
-      </select>
 
-      <button id="toggleLastStep">Toggle Last Step</button>
-    </div>
-    <div id="step2" class="step">
-      Here's a second page with some info on it.
-    </div>
-    <div id="step3" class="step">
-      You chose the message:
-      <div id="message"></div>
-    </div>
-    <div id="step4" class="step">
-      Hey, here's a fourth step, just for you. Toggle this on or off from step
-      1.
+    <div>
+      <div class="slds-form-element slds-form-element_stacked slds-lookup validation-panel" data-select="single" data-scope="single" id="subscriberKey-panel">
+        <label class="slds-form-element__label" for="lookup-02"><strong>Name*</strong>
+          <a class="entry-source-tooltip-icon" href="javascript:void(0)" aria-describedby="help">
+                <span class="slds-icon_container slds-icon-utility-info">
+                  <svg class="slds-icon slds-icon slds-icon_xx-small slds-icon-text-default" aria-hidden="true">
+                    <use xlink:href="vendor/salesforce-lightning/assets/icons/utility-sprite/svg/symbols.svg#info"></use>
+                  </svg>
+                  <span class="slds-assistive-text">Learn more</span>
+                </span>
+          </a>
+          <div class="entry-source-tooltip slds-popover slds-popover_tooltip slds-nubbin_bottom-left" role="tooltip" id="help" style="position:absolute;top:-60px;left:95px;display:none">
+            <div class="slds-popover__body">
+              Type <i>EntrySource</i> to map attributes from your<br> Journey Data Extension.
+            </div>
+          </div>
+        </label>
+
+        <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
+          <svg aria-hidden="true" class="slds-input__icon slds-icon-text-default">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="vendor/salesforce-lightning/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
+          </svg>
+          <input id="nameLookup" class="slds-lookup__search-input slds-input required" type="text" aria-autocomplete="list" role="combobox"
+                 aria-expanded="false" aria-activedescendant="" placeholder="Search for SubscriberKey">
+        </div>
+      </div>
     </div>
   </body>
 </html> 
