@@ -1,8 +1,8 @@
-import Router from 'express';
-import Controller from "../controllers/sfmchelper.controller";
+import Router from 'express'
+import Controller from '../controllers/sfmchelper.controller'
 
-let router = Router();
+const router = Router()
 
-router.post('/fieldNames', Controller.getFieldNames);
+router.post('/fieldNames', Controller.getFieldNames)
 
-export default router;
+export default router
