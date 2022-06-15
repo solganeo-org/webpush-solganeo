@@ -1,0 +1,72 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is the api documentation for webpush api project. You can find all the endpoints in this page\n",
+    "version": "1.0.0",
+    "title": "Solganeo Webpush",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "it@solganeo.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "paths": {
+    "/sfmcHelper/fieldNames": {
+      "post": {
+        "tags": [
+          "sfmcHelper"
+        ],
+        "summary": "Retrieve DE fieldnames",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "journey object",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Send the fieldName Array"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Journey": {
+      "type": "object",
+      "properties": {
+        "dataExtensionKey": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "xml": {
+        "name": "User"
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Solgacom-webpush",
+    "url": "https://doc.clickup.com/20410493/d/kew3x-962/web-push-documentation"
+  },
+  "host": "virtserver.swaggerhub.com",
+  "basePath": "/uzunigat/webpush-api/1.0.0",
+  "schemes": [
+    "https",
+    "http"
+  ]
+}

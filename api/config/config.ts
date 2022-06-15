@@ -1,0 +1,53 @@
+var convict = require('convict');
+import * as path from 'path';
+
+convict.addFormat(require('convict-format-with-validator').ipaddress);
+
+var config = convict({
+
+    env: {
+        doc: 'The application environment.',
+        format: ['production', 'development', 'test'],
+        default: 'local',
+        env: 'NODE_ENV'
+    },
+
+    port: {
+        doc: 'The port to bind.',
+        format: 'port',
+        default: 3000,
+        env: 'PORT',
+        arg: 'port'
+      },
+
+    sfmc_client_id: {
+        doc: 'Client id to connect to the SFMC API',
+        format: String,
+        env: `SFMC_CLIENT_ID`,
+        default: ""
+    },
+
+    sfmc_client_secret: {
+        doc: 'Client secret to connect to the SFMC API',
+        format: String,
+        env: `SFMC_CLIENT_SECRET`,
+        default: ""
+    },
+
+    sfmc_auth_url: {
+        doc: 'Client secret to connect to the SFMC API',
+        format: String,
+        env: `SFMC_AUTH_URL`,
+        default: ""
+    }
+})
+
+var env = config.get('env');
+
+if(env == "local") {
+    config.loadFile(path.join(__dirname, '.env.'+ env + '.json'));
+}
+
+// Perform validation
+config.validate({allowed: 'strict'});
+export {config};
