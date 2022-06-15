@@ -1,77 +1,77 @@
 {
-	"workflowApiVersion": "1.1",
-	"metaData": {
-	  "icon": "images/sms.png",
-	  "category": "message"
-	},
-	"type": "REST",
-	"lang": {
-	  "en-US": {
-		"name": "REST Activity (Workflow API v1.1)",
-		"description": "An example REST activity using workflow API v1.1 format."
-	  }
-	},
-	"arguments": {
-	  "execute": {
-		"inArguments": [],
-		"outArguments": [
-		  {
-			"foundSignupDate": ""
-		  }
-		],
-		"url": "https://d096-2a01-cb0c-8563-2f00-8018-15b6-2b8f-c3b9.ngrok.io/execute"
-	  }
-	},
-	"configurationArguments": {
-	  "save": {
-		"url": "https://d096-2a01-cb0c-8563-2f00-8018-15b6-2b8f-c3b9.ngrok.io/save"
-	  },
-	  "publish": {
-		"url": "https://d096-2a01-cb0c-8563-2f00-8018-15b6-2b8f-c3b9.ngrok.io/publish"
-	  },
-	  "validate": {
-		"url": "https://d096-2a01-cb0c-8563-2f00-8018-15b6-2b8f-c3b9.ngrok.io/validate"
-	  },
-	  "stop": {
-		"url": "https://d096-2a01-cb0c-8563-2f00-8018-15b6-2b8f-c3b9.ngrok.io/stop"
-	  }
-	},
-	"userInterfaces": {
-	  "configModal": {
-		"height": 200,
-		"width": 300,
-		"fullscreen": true
-	  }
-	},
-	"schema": {
-	  "arguments": {
-		"execute": {
-		  "inArguments": [
-			{
-			  "phoneNumber": {
-				"dataType": "Phone",
-				"isNullable": false,
-				"direction": "in"
-			  }
-			},
-			{
-			  "emailAddress": {
-				"dataType": "Email",
-				"isNullable": false,
-				"direction": "in"
-			  }
-			}
-		  ],
-		  "outArguments": [
-			{
-			  "foundSignupDate": {
-				"dataType": "Date",
-				"direction": "out",
-				"access": "visible"
-			  }
-			}
-		  ]
-		}
-	  }
-	}
+  "workflowApiVersion": "1.1",
+  "metaData": {
+    "icon": "images/sms.png",
+    "category": "message"
+  },
+  "type": "REST",
+  "lang": {
+    "en-US": {
+      "name": "REST Activity (Workflow API v1.1)",
+      "description": "An example REST activity using workflow API v1.1 format."
+    }
+  },
+  "arguments": {
+    "execute": {
+      "inArguments": [],
+      "outArguments": [
+        {
+          "foundSignupDate": ""
+        }
+      ],
+      "url": "https://d096-2a01-cb0c-8563-2f00-8018-15b6-2b8f-c3b9.ngrok.io/execute"
+    }
+  },
+  "configurationArguments": {
+    "save": {
+      "url": "https://d096-2a01-cb0c-8563-2f00-8018-15b6-2b8f-c3b9.ngrok.io/save"
+    },
+    "publish": {
+      "url": "https://d096-2a01-cb0c-8563-2f00-8018-15b6-2b8f-c3b9.ngrok.io/publish"
+    },
+    "validate": {
+      "url": "https://d096-2a01-cb0c-8563-2f00-8018-15b6-2b8f-c3b9.ngrok.io/validate"
+    },
+    "stop": {
+      "url": "https://d096-2a01-cb0c-8563-2f00-8018-15b6-2b8f-c3b9.ngrok.io/stop"
+    }
+  },
+  "userInterfaces": {
+    "configModal": {
+      "height": 200,
+      "width": 300,
+      "fullscreen": true
+    }
+  },
+  "schema": {
+    "arguments": {
+      "execute": {
+        "inArguments": [
+          {
+            "phoneNumber": {
+              "dataType": "Phone",
+              "isNullable": false,
+              "direction": "in"
+            }
+          },
+          {
+            "emailAddress": {
+              "dataType": "Email",
+              "isNullable": false,
+              "direction": "in"
+            }
+          }
+        ],
+        "outArguments": [
+          {
+            "foundSignupDate": {
+              "dataType": "Date",
+              "direction": "out",
+              "access": "visible"
+            }
+          }
+        ]
+      }
+    }
   }
+}

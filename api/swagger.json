@@ -16,16 +16,10 @@
   "paths": {
     "/sfmcHelper/fieldNames": {
       "post": {
-        "tags": [
-          "sfmcHelper"
-        ],
+        "tags": ["sfmcHelper"],
         "summary": "Retrieve DE fieldnames",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
         "parameters": [
           {
             "in": "body",
@@ -65,8 +59,5 @@
   },
   "host": "virtserver.swaggerhub.com",
   "basePath": "/uzunigat/webpush-api/1.0.0",
-  "schemes": [
-    "https",
-    "http"
-  ]
+  "schemes": ["https", "http"]
 }
