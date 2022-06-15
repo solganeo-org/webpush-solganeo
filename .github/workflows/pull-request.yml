@@ -8,4 +8,4 @@ jobs:
     steps:
       - uses: delivery-much/actions-chat@v1
         with:
-          url: ${{ secrets.GOOGLE_CHAT_PULL_REQUEST_WEBHOOK_URL }}
+          url: ${{ secrets.GOOGLE_CHAT_WEBHOOK }}
