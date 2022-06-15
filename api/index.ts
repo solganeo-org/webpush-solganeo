@@ -1,12 +1,12 @@
 import express, { Express, Request, Response } from 'express';
-import dotenv from 'dotenv';
+import {config} from './config';
 import bodyParser from 'body-parser';
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
 
 import sfmchelper from './routes/sfmchelper';
 
-dotenv.config();
+console.log(config.get('env'))
 
 const app: Express = express();
 const port = process.env.PORT || 3000;
