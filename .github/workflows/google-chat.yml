@@ -1,0 +1,15 @@
+name: Google Chat
+on: 
+  pull_request:
+<<<<<<< HEAD:.github/workflows/pull-request.yml
+    types: [opened, reopened, ready_for_review]
+=======
+    types: [opened, reopened, ready_for_reviewer]
+>>>>>>> b885d0969073f81b06f20ee8d952c8f92d3eee20:.github/workflows/google-chat.yml
+jobs:
+  chat:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: delivery-much/actions-chat@v1
+        with:
+          url: ${{ secrets.GOOGLE_CHAT_WEBHOOK }}
