@@ -8,7 +8,7 @@
   "lang": {
     "en-US": {
       "name": "Web Push Notifications",
-      "description": "An example REST activity using workflow API v1.1 format."
+      "description": "Web Push Notifications Custom Activity SFMC"
     }
   },
   "arguments": {
@@ -19,28 +19,28 @@
           "foundSignupDate": ""
         }
       ],
-      "url": "https://0fae-86-208-104-241.ngrok.io/execute"
+      "url": "https://9575-86-208-104-241.ngrok.io/execute"
     }
   },
   "configurationArguments": {
     "save": {
-      "url": "https://0fae-86-208-104-241.ngrok.io/save"
+      "url": "https://9575-86-208-104-241.ngrok.io/save"
     },
     "publish": {
-      "url": "https://0fae-86-208-104-241.ngrok.io/publish"
+      "url": "https://9575-86-208-104-241.ngrok.io/publish"
     },
     "validate": {
-      "url": "https://0fae-86-208-104-241.ngrok.io/validate"
+      "url": "https://9575-86-208-104-241.ngrok.io/validate"
     },
     "stop": {
-      "url": "https://0fae-86-208-104-241.ngrok.io/stop"
+      "url": "https://9575-86-208-104-241.ngrok.io/stop"
     }
   },
   "userInterfaces": {
     "configModal": {
       "height": 200,
       "width": 300,
-      "fullscreen": true
+      "fullscreen": false
     }
   },
   "schema": {

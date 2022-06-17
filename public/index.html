@@ -36,7 +36,7 @@
     </style>
   </head>
   <body>
-    
+
     <!-- Spinner -->
       <div class="spinner" style="display: none;">
         <div class="demo-only" >
@@ -49,8 +49,10 @@
       </div>
 
     <div>
+
+      <!-- INPUT Subscriber Key -->
       <div class="slds-form-element slds-form-element_stacked slds-lookup validation-panel" data-select="single" data-scope="single" id="subscriberKey-panel">
-        <label class="slds-form-element__label" for="lookup-02"><strong>Name*</strong>
+        <label class="slds-form-element__label" for="lookup-02"><strong>Subscriber Key*</strong>
           <a class="entry-source-tooltip-icon" href="javascript:void(0)" aria-describedby="help">
                 <span class="slds-icon_container slds-icon-utility-info">
                   <svg class="slds-icon slds-icon slds-icon_xx-small slds-icon-text-default" aria-hidden="true">
@@ -70,10 +72,92 @@
           <svg aria-hidden="true" class="slds-input__icon slds-icon-text-default">
             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="vendor/salesforce-lightning/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
           </svg>
-          <input id="nameLookup" class="slds-lookup__search-input slds-input required" type="text" aria-autocomplete="list" role="combobox"
+          <input id="subscriberLookup" class="slds-lookup__search-input slds-input required" type="text" aria-autocomplete="list" role="combobox"
                  aria-expanded="false" aria-activedescendant="" placeholder="Search for SubscriberKey">
         </div>
       </div>
+
+      <!-- INPUT AUTH Key -->
+      <div class="slds-form-element slds-form-element_stacked slds-lookup validation-panel" data-select="single" data-scope="single" id="subscriberKey-panel">
+        <label class="slds-form-element__label" for="lookup-02"><strong>Auth Key*</strong>
+          <a class="entry-source-tooltip-icon" href="javascript:void(0)" aria-describedby="help">
+                <span class="slds-icon_container slds-icon-utility-info">
+                  <svg class="slds-icon slds-icon slds-icon_xx-small slds-icon-text-default" aria-hidden="true">
+                    <use xlink:href="vendor/salesforce-lightning/assets/icons/utility-sprite/svg/symbols.svg#info"></use>
+                  </svg>
+                  <span class="slds-assistive-text">Learn more</span>
+                </span>
+          </a>
+          <div class="entry-source-tooltip slds-popover slds-popover_tooltip slds-nubbin_bottom-left" role="tooltip" id="help" style="position:absolute;top:-60px;left:95px;display:none">
+            <div class="slds-popover__body">
+              Type <i>EntrySource</i> to map attributes from your<br> Journey Data Extension.
+            </div>
+          </div>
+        </label>
+
+        <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
+          <svg aria-hidden="true" class="slds-input__icon slds-icon-text-default">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="vendor/salesforce-lightning/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
+          </svg>
+          <input id="authLookup" class="slds-lookup__search-input slds-input required" type="text" aria-autocomplete="list" role="combobox"
+                 aria-expanded="false" aria-activedescendant="" placeholder="Search for auth key">
+        </div>
+      </div>
+
+      <!-- INPUT P256dh key -->
+      <div class="slds-form-element slds-form-element_stacked slds-lookup validation-panel" data-select="single" data-scope="single" id="subscriberKey-panel">
+        <label class="slds-form-element__label" for="lookup-02"><strong>P256dh Key*</strong>
+          <a class="entry-source-tooltip-icon" href="javascript:void(0)" aria-describedby="help">
+                <span class="slds-icon_container slds-icon-utility-info">
+                  <svg class="slds-icon slds-icon slds-icon_xx-small slds-icon-text-default" aria-hidden="true">
+                    <use xlink:href="vendor/salesforce-lightning/assets/icons/utility-sprite/svg/symbols.svg#info"></use>
+                  </svg>
+                  <span class="slds-assistive-text">Learn more</span>
+                </span>
+          </a>
+          <div class="entry-source-tooltip slds-popover slds-popover_tooltip slds-nubbin_bottom-left" role="tooltip" id="help" style="position:absolute;top:-60px;left:95px;display:none">
+            <div class="slds-popover__body">
+              Type <i>EntrySource</i> to map attributes from your<br> Journey Data Extension.
+            </div>
+          </div>
+        </label>
+
+        <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
+          <svg aria-hidden="true" class="slds-input__icon slds-icon-text-default">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="vendor/salesforce-lightning/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
+          </svg>
+          <input id="p256dhLookup" class="slds-lookup__search-input slds-input required" type="text" aria-autocomplete="list" role="combobox"
+                 aria-expanded="false" aria-activedescendant="" placeholder="Search forP256dh key">
+        </div>
+      </div>
+
+      <!-- INPUT Endpoint -->
+      <div class="slds-form-element slds-form-element_stacked slds-lookup validation-panel" data-select="single" data-scope="single" id="subscriberKey-panel">
+        <label class="slds-form-element__label" for="lookup-02"><strong>Endpoint*</strong>
+          <a class="entry-source-tooltip-icon" href="javascript:void(0)" aria-describedby="help">
+                <span class="slds-icon_container slds-icon-utility-info">
+                  <svg class="slds-icon slds-icon slds-icon_xx-small slds-icon-text-default" aria-hidden="true">
+                    <use xlink:href="vendor/salesforce-lightning/assets/icons/utility-sprite/svg/symbols.svg#info"></use>
+                  </svg>
+                  <span class="slds-assistive-text">Learn more</span>
+                </span>
+          </a>
+          <div class="entry-source-tooltip slds-popover slds-popover_tooltip slds-nubbin_bottom-left" role="tooltip" id="help" style="position:absolute;top:-60px;left:95px;display:none">
+            <div class="slds-popover__body">
+              Type <i>EntrySource</i> to map attributes from your<br> Journey Data Extension.
+            </div>
+          </div>
+        </label>
+
+        <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
+          <svg aria-hidden="true" class="slds-input__icon slds-icon-text-default">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="vendor/salesforce-lightning/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
+          </svg>
+          <input id="endpointLookup" class="slds-lookup__search-input slds-input required" type="text" aria-autocomplete="list" role="combobox"
+                 aria-expanded="false" aria-activedescendant="" placeholder="Search for Endpoint">
+        </div>
+      </div>
+
     </div>
   </body>
 </html> 
