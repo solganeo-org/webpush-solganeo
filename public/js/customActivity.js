@@ -129,7 +129,7 @@ define(['postmonger', 'lightning-lookup'], function (
             })
           })
         })
-        $('#nameLookup').lookup({
+        $('#subscriberLookup, #authLookup, #p256dhLookup, #endpointLookup').lookup({
           items: contactAttributesResult,
           objectPluralLabel: 'Contact Attributes',
           objectLabel: 'Contact Attribute',
@@ -148,11 +148,15 @@ define(['postmonger', 'lightning-lookup'], function (
         if (!isInit) {
           Spinner(false)
         } else {
-          console.log(inArguments)
-          if (inArguments.length > 0 && inArguments[0].UInameLookup) {
-            inArgument = inArguments[0]
+          inArgument = inArguments[0]
 
-            $('#nameLookup').lookup('setSelection', inArgument.UInameLookup)
+          if (inArguments.length > 0) {
+
+            (inArguments[0].UIsubscriberLookup) ? $('#subscriberLookup').lookup('setSelection', inArgument.UIsubscriberLookup) : false ;
+            (inArguments[0].UIauthLookup) ? $('#authLookup').lookup('setSelection', inArgument.UIauthLookup) : false ;
+            (inArguments[0].UIp256dhLookup) ? $('#p256dhLookup').lookup('setSelection', inArgument.UIp256dhLookup) : false ;
+            (inArguments[0].UIendpointLookup) ? $('#endpointLookup').lookup('setSelection', inArgument.UIendpointLookup) : false ;
+
           }
         }
       },
@@ -201,19 +205,62 @@ define(['postmonger', 'lightning-lookup'], function (
     var arg = {}
     arg.contactId = '{{Contact.Id}}'
 
-    if ($('#nameLookup').lookup('getSelection') != null) {
-      var nameLookupLabel = $('#nameLookup').lookup('getSelection').metaLabel
-      if (nameLookupLabel == null) {
-        nameLookupLabel = $('#nameLookup').lookup('getSelection').label
+    // Subscriber Key Lookup
+    if ($('#subscriberLookup').lookup('getSelection') != null) {
+      var subscriberLookupLabel = $('#subscriberLookup').lookup('getSelection').metaLabel
+      if (subscriberLookupLabel == null) {
+        subscriberLookupLabel = $('#subscriberLookup').lookup('getSelection').label
       }
-      let fixedNameField = buildArgument(nameLookupLabel)
+      let fixedSubscriberField = buildArgument(subscriberLookupLabel)
 
-      arg.name = NormalizeInArgument(fixedNameField)
+      arg.subscriber = NormalizeInArgument(fixedSubscriberField)
     } else {
-      arg.name = ''
+      arg.subscriber = ''
     }
 
-    arg.UInameLookup = $('#nameLookup').lookup('getSelection')
+    // Auth Key Lookup
+    if ($('#authLookup').lookup('getSelection') != null) {
+      var authLookupLabel = $('#authLookup').lookup('getSelection').metaLabel
+      if (authLookupLabel == null) {
+        authLookupLabel = $('#authLookup').lookup('getSelection').label
+      }
+      let fixedAuthField = buildArgument(authLookupLabel)
+
+      arg.auth = NormalizeInArgument(fixedAuthField)
+    } else {
+      arg.auth = ''
+    }
+
+    // P256dh Key Lookup
+    if ($('#p256dhLookup').lookup('getSelection') != null) {
+      var p256dhLookupLabel = $('#p256dhLookup').lookup('getSelection').metaLabel
+      if (p256dhLookupLabel == null) {
+        p256dhLookupLabel = $('#p256dhLookup').lookup('getSelection').label
+      }
+      let fixedP256dhField = buildArgument(p256dhLookupLabel)
+
+      arg.p256dh = NormalizeInArgument(fixedP256dhField)
+    } else {
+      arg.p256dh = ''
+    }
+
+    // Endpoint Key Lookup
+    if ($('#endpointLookup').lookup('getSelection') != null) {
+      var endpointLookupLabel = $('#endpointLookup').lookup('getSelection').metaLabel
+      if (endpointLookupLabel == null) {
+        endpointLookupLabel = $('#endpointLookup').lookup('getSelection').label
+      }
+      let fixedEndpointField = buildArgument(endpointLookupLabel)
+
+      arg.endpoint = NormalizeInArgument(fixedEndpointField)
+    } else {
+      arg.endpoint = ''
+    }
+
+    arg.UIsubscriberLookup = $('#subscriberLookup').lookup('getSelection')
+    arg.UIauthLookup = $('#authLookup').lookup('getSelection')
+    arg.UIp256dhLookup = $('#p256dhLookup').lookup('getSelection')
+    arg.UIendpointLookup = $('#endpointLookup').lookup('getSelection')
 
     inArgs.push(arg)
     Spinner(false)
