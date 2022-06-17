@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 define(['postmonger', 'lightning-lookup'], function (
   Postmonger,
   LightningLookup
@@ -10,6 +11,7 @@ define(['postmonger', 'lightning-lookup'], function (
   var eventDefinitionID = ''
 
   var journeydata = {}
+  var inArgument = {}
 
   var lastStepEnabled = false
   var contactAttributesResult = []
@@ -33,6 +35,7 @@ define(['postmonger', 'lightning-lookup'], function (
   connection.on('clickedNext', onClickedNext)
 
   function onRender() {
+    Spinner(true)
     // JB will respond the first time 'ready' is called with 'initActivity'
 
     connection.trigger('requestTokens')
@@ -72,9 +75,7 @@ define(['postmonger', 'lightning-lookup'], function (
 
     LoadAttributeSets(inArguments, true)
 
-    $.each(inArguments, function (index, inArgument) {
-      $.each(inArgument, function (key, val) {})
-    })
+    Spinner(false)
 
     connection.trigger('updateButton', {
       button: 'next',
@@ -89,13 +90,26 @@ define(['postmonger', 'lightning-lookup'], function (
     journeydata = dataSources
   }
 
+  function Spinner(show) {
+    if (show) {
+      $('.spinner').show()
+    } else {
+      $('.spinner').hide()
+    }
+  }
+
   function LoadAttributeSets(inArguments, isInit) {
     contactAttributesResult.length = 0
     var url = '/sfmcHelper/fieldNames'
 
+    console.log(inArguments)
+
     console.log(eventDefinitionKey)
     if (eventDefinitionKey != '') {
       url += '?eventDefinitionKey=' + eventDefinitionKey
+    }
+    if (!isInit) {
+      Spinner(true)
     }
 
     $.ajax({
@@ -128,6 +142,19 @@ define(['postmonger', 'lightning-lookup'], function (
           clearOnSelect: false,
           assetsLocation: '/',
         })
+
+        console.log('HERREEEE')
+
+        if (!isInit) {
+          Spinner(false)
+        } else {
+          console.log(inArguments)
+          if (inArguments.length > 0 && inArguments[0].UInameLookup) {
+            inArgument = inArguments[0]
+
+            $('#nameLookup').lookup('setSelection', inArgument.UInameLookup)
+          }
+        }
       },
     })
   }
@@ -141,22 +168,59 @@ define(['postmonger', 'lightning-lookup'], function (
     // Response: endpoints = { restHost: <url> } i.e. "rest.s1.qa1.exacttarget.com"
     // console.log(endpoints);
   }
-
+  123358434168
   function onClickedNext() {
+    Spinner(true)
     save()
   }
 
-  function save() {
-    // 'payload' is initialized on 'initActivity' above.
-    // Journey Builder sends an initial payload with defaults
-    // set by this activity's config.json file.  Any property
-    // may be overridden as desired.
-    payload.name = name
+  function buildArgument(value) {
+    let valueSplited = value.split('.')
+    let valueField = '"'
+    for (var i = 2; i < valueSplited.length; i++) {
+      valueField += valueSplited[i]
+    }
 
-    payload['arguments'].execute.inArguments = [{ variable: 'Test' }]
+    valueField += '"'
+    let returningValue =
+      valueSplited[0] + '.' + valueSplited[1] + '.' + valueField
+    return returningValue
+  }
+
+  function NormalizeInArgument(inArg) {
+    if (inArg.startsWith('EntrySource.')) {
+      return '{{' + inArg.replace('EntrySource.', 'Event.') + '}}'
+    }
+    var firstPart = inArg.substring(0, inArg.indexOf('.'))
+    var lastPart = inArg.substring(inArg.indexOf('.') + 1)
+    return '{{Contact.Attribute."' + firstPart + '"."' + lastPart + '"}}'
+  }
+
+  function save() {
+    var inArgs = []
+    var arg = {}
+    arg.contactId = '{{Contact.Id}}'
+
+    if ($('#nameLookup').lookup('getSelection') != null) {
+      var nameLookupLabel = $('#nameLookup').lookup('getSelection').metaLabel
+      if (nameLookupLabel == null) {
+        nameLookupLabel = $('#nameLookup').lookup('getSelection').label
+      }
+      let fixedNameField = buildArgument(nameLookupLabel)
+
+      arg.name = NormalizeInArgument(fixedNameField)
+    } else {
+      arg.name = ''
+    }
+
+    arg.UInameLookup = $('#nameLookup').lookup('getSelection')
+
+    inArgs.push(arg)
+    Spinner(false)
+
+    payload['arguments'].execute.inArguments = inArgs
 
     payload['metaData'].isConfigured = true
-
     connection.trigger('updateActivity', payload)
   }
 

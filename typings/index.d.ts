@@ -1,1 +1,1 @@
-declare module 'fuel-rest';
+declare module 'fuel-rest'

@@ -2,12 +2,12 @@
   "workflowApiVersion": "1.1",
   "metaData": {
     "icon": "images/sms.png",
-    "category": "message"
+    "category": "custom"
   },
   "type": "REST",
   "lang": {
     "en-US": {
-      "name": "REST Activity (Workflow API v1.1)",
+      "name": "Web Push Notifications",
       "description": "An example REST activity using workflow API v1.1 format."
     }
   },
@@ -19,21 +19,21 @@
           "foundSignupDate": ""
         }
       ],
-      "url": "https://d096-2a01-cb0c-8563-2f00-8018-15b6-2b8f-c3b9.ngrok.io/execute"
+      "url": "https://0fae-86-208-104-241.ngrok.io/execute"
     }
   },
   "configurationArguments": {
     "save": {
-      "url": "https://d096-2a01-cb0c-8563-2f00-8018-15b6-2b8f-c3b9.ngrok.io/save"
+      "url": "https://0fae-86-208-104-241.ngrok.io/save"
     },
     "publish": {
-      "url": "https://d096-2a01-cb0c-8563-2f00-8018-15b6-2b8f-c3b9.ngrok.io/publish"
+      "url": "https://0fae-86-208-104-241.ngrok.io/publish"
     },
     "validate": {
-      "url": "https://d096-2a01-cb0c-8563-2f00-8018-15b6-2b8f-c3b9.ngrok.io/validate"
+      "url": "https://0fae-86-208-104-241.ngrok.io/validate"
     },
     "stop": {
-      "url": "https://d096-2a01-cb0c-8563-2f00-8018-15b6-2b8f-c3b9.ngrok.io/stop"
+      "url": "https://0fae-86-208-104-241.ngrok.io/stop"
     }
   },
   "userInterfaces": {

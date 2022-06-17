@@ -1,8 +1,10 @@
 import { Request, Response } from 'express'
+import { config } from '../config'
 
 import uuid from 'uuid'
 
-import FuelRest from 'fuel-rest'
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const FuelRest = require('fuel-rest')
 
 function getFieldNames(req: Request, res: Response) {
   // Get Field Names from SFMC
@@ -10,10 +12,10 @@ function getFieldNames(req: Request, res: Response) {
   const options = {
     auth: {
       // options you want passed when Fuel Auth is initialized
-      clientId: process.env.SFMC_CLIENT_ID,
-      clientSecret: process.env.SFMC_CLIENT_SECRET,
+      clientId: config.get('sfmc_client_id'),
+      clientSecret: config.get('sfmc_client_secret'),
       authVersion: 2,
-      authUrl: process.env.SFMC_AUTH_URL,
+      authUrl: config.get('sfmc_auth_url'),
       authOptions: {
         authVersion: 2,
       },
@@ -48,27 +50,10 @@ function getFieldNames(req: Request, res: Response) {
     })
     jsonResults.items.push(journeyData)
   }
+
   // Once Journey Data is found the we append it to the results we return but we replace the fullyQualifiedName property
 
-  options.uri = '/contacts/v1/attributesetdefinitions/?$Page=1&$pagesize=450'
-  const RestClient = new FuelRest(options)
-
-  RestClient.get(options)
-    .then((response: any) => {
-      const attributeResults = response.body
-
-      attributeResults.items.forEach((item: any) => {
-        item.attributes.forEach((attr: any) => {
-          const qualifiedName = attr.fullyQualifiedName
-          attr.fullyQualifiedName = qualifiedName
-          attr.key = qualifiedName
-          attr.id = uuid.v1()
-        })
-        jsonResults.items.push(item)
-      })
-      res.status(200).json(jsonResults)
-    })
-    .catch((err: any) => console.log('Error General', err))
+  res.send(jsonResults)
 }
 
 export default { getFieldNames }
