@@ -12,4 +12,18 @@ SFMC needs an endpoint to send the information between sfmc and the custom appli
 5. Go to the SFMC package and change the endpoint to the one from ngrok.
 6. Open a journey builder and create a new journey. 😁
 
+## Create ./api/config/.env.local.json
+
+You can find all those variables inside your installed package on sfmc. 👍
+
+```json
+{
+  "env": "development",
+  "sfmc_client_id": "client_id",
+  "sfmc_client_secret": "client_secret",
+  "sfmc_auth_url": "https://mcjnmn9mfnxq4m36wvmtt59plqg1.auth.marketingcloudapis.com/v2/token",
+  "jwt_secret": "jwt_token"
+}
+```
+
 To have a more detail documentation, please visit the following link 😁 https://doc.clickup.com/20410493/d/kew3x-962/web-push-documentation
