@@ -35,9 +35,15 @@ const config = convict({
   },
 
   sfmc_auth_url: {
-    doc: 'Client secret to connect to the SFMC API',
+    doc: 'Auth to connect to the SFMC API',
     format: String,
     env: `SFMC_AUTH_URL`,
+    default: '',
+  },
+  jwt_secret: {
+    doc: 'JWT secret to connect to the SFMC API',
+    format: String,
+    env: `JWT_SECRET`,
     default: '',
   },
 })
