@@ -46,6 +46,18 @@ const config = convict({
     env: `JWT_SECRET`,
     default: '',
   },
+
+  rabbit: {
+
+    url: {
+
+      format: String,
+      default: 'amqp://localhost',
+      env: 'RABBIT_URL',
+
+    }
+
+  }
 })
 
 const env = config.get('env')
