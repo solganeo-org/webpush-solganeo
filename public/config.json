@@ -19,35 +19,41 @@
           "foundSignupDate": ""
         }
       ],
-      "url": "https://9575-86-208-104-241.ngrok.io/execute"
+      "url": "https://69e0-80-15-110-62.ngrok.io/sfmc/execute",
+      "verb": "POST",
+      "body": "",
+      "header": "",
+      "format": "json",
+      "useJwt": true,
+      "timeout": 10000
     }
   },
   "configurationArguments": {
     "save": {
-      "url": "https://9575-86-208-104-241.ngrok.io/save",
+      "url": "https://69e0-80-15-110-62.ngrok.io/sfmc/save",
       "verb": "POST",
       "useJwt": true
     },
     "publish": {
-      "url": "https://9575-86-208-104-241.ngrok.io/publish",
+      "url": "https://69e0-80-15-110-62.ngrok.io/sfmc/publish",
       "verb": "POST",
       "useJwt": true
     },
     "validate": {
-      "url": "https://9575-86-208-104-241.ngrok.io/validate",
+      "url": "https://69e0-80-15-110-62.ngrok.io/sfmc/validate",
       "verb": "POST",
       "useJwt": true
     },
     "stop": {
-      "url": "https://9575-86-208-104-241.ngrok.io/stop",
+      "url": "https://69e0-80-15-110-62.ngrok.io/sfmc/stop",
       "verb": "POST",
       "useJwt": true
     }
   },
   "userInterfaces": {
     "configModal": {
-      "height": 200,
-      "width": 300,
+      "height": 620,
+      "width": 800,
       "fullscreen": false
     }
   },
