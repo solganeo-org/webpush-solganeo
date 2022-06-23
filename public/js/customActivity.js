@@ -85,8 +85,8 @@ define(['postmonger', 'lightning-lookup'], function (
   }
 
   function requestDataSources(dataSources) {
-    console.log('*** DataSources ***')
-    console.log(dataSources)
+    // console.log('*** DataSources ***')
+    // console.log(dataSources)
     journeydata = dataSources
   }
 
@@ -101,8 +101,6 @@ define(['postmonger', 'lightning-lookup'], function (
   function LoadAttributeSets(inArguments, isInit) {
     contactAttributesResult.length = 0
     var url = '/sfmcHelper/fieldNames'
-
-    console.log(inArguments)
 
     console.log(eventDefinitionKey)
     if (eventDefinitionKey != '') {
@@ -129,7 +127,7 @@ define(['postmonger', 'lightning-lookup'], function (
             })
           })
         })
-        $('#subscriberLookup, #authLookup, #p256dhLookup, #endpointLookup').lookup({
+        $('#subscriberLookup, #authLookup, #p256dhLookup, #endpointLookup, #text-input-content').lookup({
           items: contactAttributesResult,
           objectPluralLabel: 'Contact Attributes',
           objectLabel: 'Contact Attribute',
@@ -143,24 +141,42 @@ define(['postmonger', 'lightning-lookup'], function (
           assetsLocation: '/',
         })
 
-        console.log('HERREEEE')
-
         if (!isInit) {
           Spinner(false)
         } else {
           inArgument = inArguments[0]
 
+          console.log(inArgument)
+
           if (inArguments.length > 0) {
 
             (inArguments[0].UIsubscriberLookup) ? $('#subscriberLookup').lookup('setSelection', inArgument.UIsubscriberLookup) : false ;
-            (inArguments[0].UIauthLookup) ? $('#authLookup').lookup('setSelection', inArgument.UIauthLookup) : false ;
-            (inArguments[0].UIp256dhLookup) ? $('#p256dhLookup').lookup('setSelection', inArgument.UIp256dhLookup) : false ;
-            (inArguments[0].UIendpointLookup) ? $('#endpointLookup').lookup('setSelection', inArgument.UIendpointLookup) : false ;
+            (inArguments[0].UIauthLookup)       ? $('#authLookup').lookup('setSelection', inArgument.UIauthLookup) : false ;
+            (inArguments[0].UIp256dhLookup)     ? $('#p256dhLookup').lookup('setSelection', inArgument.UIp256dhLookup) : false ;
+            (inArguments[0].UIendpointLookup)   ? $('#endpointLookup').lookup('setSelection', inArgument.UIendpointLookup) : false ;
+
+            // Notification Input
+            (inArguments[0].UIcontent)        ?  $('#text-input-content')[0].value = inArgument.UIcontent : false ;
+            (inArguments[0].UIactionName)     ?  $('#text-input-action-name')[0].value = inArgument.UIactionName : false ;
+            (inArguments[0].UIactionTitle)    ?  $('#text-input-action-title')[0].value = inArgument.UIactionTitle : false ;
+            (inArguments[0].UIicon)           ?  $('#text-input-icon')[0].value = inArgument.UIicon : false ;
+            (inArguments[0].UIurl1)           ?  $('#text-input-url1')[0].value = inArgument.UIurl1 : false ;
+            (inArguments[0].UIurl2)           ?  $('#text-input-url2')[0].value = inArgument.UIurl2 : false ;
 
           }
         }
       },
     })
+  }
+
+  // FE Validation
+  function isValidURL(string) { // Validate https
+    // eslint-disable-next-line no-useless-escape
+    var isStaticImage = string.match(/(http|https):\/\/(\w+:{0,1}\w*)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/)   
+    if(isStaticImage !== null){    
+      return true
+    }
+    return false
   }
 
   function onGetTokens(tokens) {
@@ -172,10 +188,71 @@ define(['postmonger', 'lightning-lookup'], function (
     // Response: endpoints = { restHost: <url> } i.e. "rest.s1.qa1.exacttarget.com"
     // console.log(endpoints);
   }
-  123358434168
+
   function onClickedNext() {
     Spinner(true)
-    save()
+    if(validateSave()) {
+      
+      Spinner(false)
+      connection.trigger('ready');
+      return;
+
+
+
+    }
+
+    else{
+
+      console.log("Before Save")
+      save();
+      return;
+
+    }
+
+  }
+
+  function validateSave() {
+    let isError = false;
+
+    console.log("Validating ...")
+
+    $('.required').each(function (i, el) {
+
+      var data = $(el).val();
+
+      if(this.id == 'subscriberLookup' || this.id == 'endpointLookup' || this.id == 'p256dhLookup' || this.id == 'authLookup' ) {
+        if($("#" + this.id).lookup('getSelection') == null) {
+          $(this).closest('.slds-form-element_stacked').addClass('slds-has-error');
+          isError = true;
+          event.preventDefault();
+        } else {
+          $(this).closest('.slds-form-element_stacked').removeClass("slds-has-error");
+        }
+      } else {
+        var len = data.length;
+        if (len<1) {
+          
+          $(this).closest('.slds-form-element_stacked').addClass('slds-has-error');
+          isError = true;
+          event.preventDefault();
+        }else{
+          $(this).closest('.slds-form-element_stacked').removeClass("slds-has-error");
+        }
+      }
+
+    })
+
+    let isErrorUrl = $('.validateUrl').val() != "" ? !isValidURL( $('.validateUrl').val() ) : false;
+
+    if (isErrorUrl ){
+      $('.slds-notify_alert').fadeIn();
+      $('.validateUrl').closest('.slds-form-element_stacked').addClass("slds-has-error");
+    }else{
+      $('.slds-notify_alert').fadeOut()
+      $('.validateUrl').closest('.slds-form-element_stacked').removeClass("slds-has-error");
+    }
+
+    return (isError || isErrorUrl);
   }
 
   function buildArgument(value) {
@@ -203,7 +280,8 @@ define(['postmonger', 'lightning-lookup'], function (
   function save() {
     var inArgs = []
     var arg = {}
-    arg.contactId = '{{Contact.Id}}'
+    arg.contactId = '{{Contact.Id}}';
+
 
     // Subscriber Key Lookup
     if ($('#subscriberLookup').lookup('getSelection') != null) {
@@ -262,8 +340,19 @@ define(['postmonger', 'lightning-lookup'], function (
     arg.UIp256dhLookup = $('#p256dhLookup').lookup('getSelection')
     arg.UIendpointLookup = $('#endpointLookup').lookup('getSelection')
 
+    // Notification Input
+    arg.UIcontent     = $('#text-input-content')[0].value;
+    arg.UIactionName  = $('#text-input-action-name')[0].value;
+    arg.UIactionTitle = $('#text-input-action-title')[0].value;
+    arg.UIicon        = $('#text-input-icon')[0].value;
+    arg.UIurl1        = $('#text-input-url1')[0].value;
+    arg.UIurl2        = $('#text-input-url2')[0].value;
+
+
     inArgs.push(arg)
     Spinner(false)
+
+    console.log(inArgs[0])
 
     payload['arguments'].execute.inArguments = inArgs
 

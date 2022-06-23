@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import { RabbitClient } from '../utils';
-import {config} from "../config"
+import {config, NotificationPayload} from "../config"
 
 function save(req: Request, res: Response) {
 
@@ -34,21 +34,32 @@ function execute(req: Request, res: Response) {
 
     console.log("Executing ...");
 
-    console.log(req.body);
-
     const args: any = req.body.inArguments[0];
 
-    const subscriber: string = args.subscriber;
-    const auth: string = args.auth;
-    const p256dh: string = args.p256dh;
-    const endpoint: string = args.endpoint;
+    console.log(args)
 
-    const payload = {
-        subscriber: subscriber,
+    const subscriber: string    = args.subscriber;
+    const auth: string          = args.auth;
+    const p256dh: string        = args.p256dh;
+    const endpoint: string      = args.endpoint;
+    const actionName: string    = args.UIactionName;
+    const actionTitle: string   = args.UIactionTitle;
+    const icon: string          = args.UIicon;
+    const url1: string          = args.UIurl1;
+    const url2: string          = args.UIurl2;
+
+
+
+    const payload: NotificationPayload = {
         auth: auth,
         p256dh: p256dh,
         endpoint: endpoint,
-        content: "Test from SFMC"
+        content: "Test from SFMC",
+        actionName: actionName,
+        actionTitle: actionTitle,
+        icon: icon,
+        url1: url1,
+        url2: url2,
     }
 
     const rabbitClient = RabbitClient.getInstance();
