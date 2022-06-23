@@ -1,5 +1,5 @@
 import express, { Express, Request, Response } from 'express'
-import { config, RabbitConfig } from './config'
+import { config } from './config'
 import bodyParser from 'body-parser'
 import swaggerUi from 'swagger-ui-express'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -14,8 +14,6 @@ import { RabbitClient } from './utils'
 const runApplication = async (): Promise<void> => {
 
   const rabbitClient = RabbitClient.getInstance()
-
-  console.log("Before connect")
 
   await rabbitClient.connect()
 

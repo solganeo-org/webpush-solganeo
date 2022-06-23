@@ -19,5 +19,5 @@ export class ProducerNotFound extends CustomError {
     constructor(message: string) {
       super(message, 500, 'PULSAR_PRODUCER_ERROR')
     }
-  }
+}
   
