@@ -22,7 +22,8 @@ You can find all those variables inside your installed package on sfmc. 👍
   "sfmc_client_id": "client_id",
   "sfmc_client_secret": "client_secret",
   "sfmc_auth_url": "https://mcjnmn9mfnxq4m36wvmtt59plqg1.auth.marketingcloudapis.com/v2/token",
-  "jwt_secret": "jwt_token"
+  "jwt_secret": "jwt_token",
+  "queue": "test"
 }
 ```
 
