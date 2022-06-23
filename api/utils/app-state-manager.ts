@@ -42,8 +42,6 @@ export class AppStateManager {
         this.closableDependencies.push(dependency)
     }
 
-    
-
     async attemptGracefulShutdown(signal: string): Promise<void> {
         console.log(`Received ${signal}, starting graceful shutdown`)
         try {

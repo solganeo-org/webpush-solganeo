@@ -2,7 +2,6 @@ import amqp from 'amqplib';
 import {RabbitConfig, config} from '../config';
 import { ProducerNotFound } from '../utils';
 
-
 export class RabbitClient {
 
     conn: any;

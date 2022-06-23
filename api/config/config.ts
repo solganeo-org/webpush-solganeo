@@ -12,6 +12,13 @@ const config = convict({
     env: 'NODE_ENV',
   },
 
+  queue: {
+    doc: 'Queue channel where messages will be sent',
+    format: String,
+    default: 'test',
+    env: 'queue',
+  },
+
   port: {
     doc: 'The port to bind.',
     format: 'port',

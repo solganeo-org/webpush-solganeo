@@ -14,38 +14,32 @@
   "arguments": {
     "execute": {
       "inArguments": [],
-      "outArguments": [
-        {
-          "foundSignupDate": ""
-        }
-      ],
-      "url": "https://69e0-80-15-110-62.ngrok.io/sfmc/execute",
-      "verb": "POST",
-      "body": "",
-      "header": "",
-      "format": "json",
-      "useJwt": true,
-      "timeout": 10000
+      "url": "https://1f9d-86-208-104-241.ngrok.io/sfmc/execute",
+      "outArguments": [],
+			"timeout": 100000,
+			"retryCount": 1,
+			"retryDelay": 10000,
+			"concurrentRequests" : 5
     }
   },
   "configurationArguments": {
     "save": {
-      "url": "https://69e0-80-15-110-62.ngrok.io/sfmc/save",
+      "url": "https://1f9d-86-208-104-241.ngrok.io/sfmc/save",
       "verb": "POST",
       "useJwt": true
     },
     "publish": {
-      "url": "https://69e0-80-15-110-62.ngrok.io/sfmc/publish",
+      "url": "https://1f9d-86-208-104-241.ngrok.io/sfmc/publish",
       "verb": "POST",
       "useJwt": true
     },
     "validate": {
-      "url": "https://69e0-80-15-110-62.ngrok.io/sfmc/validate",
+      "url": "https://1f9d-86-208-104-241.ngrok.io/sfmc/validate",
       "verb": "POST",
       "useJwt": true
     },
     "stop": {
-      "url": "https://69e0-80-15-110-62.ngrok.io/sfmc/stop",
+      "url": "https://1f9d-86-208-104-241.ngrok.io/sfmc/stop",
       "verb": "POST",
       "useJwt": true
     }
