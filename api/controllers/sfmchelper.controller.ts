@@ -3,25 +3,22 @@ import { config } from '../config'
 
 import uuid from 'uuid'
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const FuelRest = require('fuel-rest')
-
 function getFieldNames(req: Request, res: Response) {
   // Get Field Names from SFMC
 
-  const options = {
-    auth: {
-      // options you want passed when Fuel Auth is initialized
-      clientId: config.get('sfmc_client_id'),
-      clientSecret: config.get('sfmc_client_secret'),
-      authVersion: 2,
-      authUrl: config.get('sfmc_auth_url'),
-      authOptions: {
-        authVersion: 2,
-      },
-    },
-    uri: '',
-  }
+  // const options = {
+  //   auth: {
+  //     // options you want passed when Fuel Auth is initialized
+  //     clientId: config.get('sfmc_client_id'),
+  //     clientSecret: config.get('sfmc_client_secret'),
+  //     authVersion: 2,
+  //     authUrl: config.get('sfmc_auth_url'),
+  //     authOptions: {
+  //       authVersion: 2,
+  //     },
+  //   },
+  //   uri: '',
+  // }
   const eventDefinitionKey = req.query.eventDefinitionKey
 
   const journeyData: any = {}
