@@ -14,32 +14,75 @@
   "arguments": {
     "execute": {
       "inArguments": [],
+<<<<<<< Updated upstream
       "url": "https://1f9d-86-208-104-241.ngrok.io/sfmc/execute",
       "outArguments": [],
 			"timeout": 100000,
 			"retryCount": 1,
 			"retryDelay": 10000,
 			"concurrentRequests" : 5
+=======
+      "outArguments": [
+        {
+          "foundSignupDate": ""
+        }
+      ],
+      "url": "https://c54c-80-15-110-62.ngrok.io/sfmc/execute"
+>>>>>>> Stashed changes
     }
   },
+  "outcomes": [
+    {
+      "arguments": {
+        "branchResult": "sent"
+      },
+      "metaData": {
+        "label": "Sent"
+      }
+    },
+    {
+      "arguments": {
+        "branchResult": "notsent"
+      },
+      "metaData": {
+        "label": "Not Sent"
+      }
+    }
+  ],
   "configurationArguments": {
     "save": {
+<<<<<<< Updated upstream
       "url": "https://1f9d-86-208-104-241.ngrok.io/sfmc/save",
+=======
+      "url": "https://c54c-80-15-110-62.ngrok.io/sfmc/save",
+>>>>>>> Stashed changes
       "verb": "POST",
       "useJwt": true
     },
     "publish": {
+<<<<<<< Updated upstream
       "url": "https://1f9d-86-208-104-241.ngrok.io/sfmc/publish",
+=======
+      "url": "https://c54c-80-15-110-62.ngrok.io/sfmc/publish",
+>>>>>>> Stashed changes
       "verb": "POST",
       "useJwt": true
     },
     "validate": {
+<<<<<<< Updated upstream
       "url": "https://1f9d-86-208-104-241.ngrok.io/sfmc/validate",
+=======
+      "url": "https://c54c-80-15-110-62.ngrok.io/sfmc/validate",
+>>>>>>> Stashed changes
       "verb": "POST",
       "useJwt": true
     },
     "stop": {
+<<<<<<< Updated upstream
       "url": "https://1f9d-86-208-104-241.ngrok.io/sfmc/stop",
+=======
+      "url": "https://c54c-80-15-110-62.ngrok.io/sfmc/stop",
+>>>>>>> Stashed changes
       "verb": "POST",
       "useJwt": true
     }

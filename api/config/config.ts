@@ -47,12 +47,19 @@ const config = convict({
     env: `SFMC_AUTH_URL`,
     default: '',
   },
+<<<<<<< Updated upstream
   jwt_secret: {
     doc: 'JWT secret to connect to the SFMC API',
+=======
+
+  jwt_secret: {
+    doc: 'Jwt Secret',
+>>>>>>> Stashed changes
     format: String,
     env: `JWT_SECRET`,
     default: '',
   },
+<<<<<<< Updated upstream
 
   rabbit: {
 
@@ -65,6 +72,8 @@ const config = convict({
     }
 
   }
+=======
+>>>>>>> Stashed changes
 })
 
 const env = config.get('env')

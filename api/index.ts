@@ -8,6 +8,7 @@ const swaggerDocument = require('./swagger.json')
 import { AppStateManager } from './utils/app-state-manager'
 
 import sfmchelper from './routes/sfmchelper'
+<<<<<<< Updated upstream
 import sfmc from './routes/sfmc'
 import { RabbitClient } from './utils'
 
@@ -26,6 +27,9 @@ const runApplication = async (): Promise<void> => {
 
   const app: Express = express()
   const port = process.env.PORT || 3000
+=======
+import sfmc from './routes/sfmc';
+>>>>>>> Stashed changes
 
   app.use(express.static('public'))
   app.use(
@@ -47,10 +51,15 @@ const runApplication = async (): Promise<void> => {
     console.log(`⚡️[server]: Server is running at Port: ${port}`)
   })
 
+<<<<<<< Updated upstream
 }
 
 runApplication();
 
+=======
+app.use('/sfmcHelper', sfmchelper)
+app.use('/sfmc', sfmc)
+>>>>>>> Stashed changes
 
 
 
