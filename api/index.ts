@@ -8,28 +8,23 @@ const swaggerDocument = require('./swagger.json')
 import { AppStateManager } from './utils/app-state-manager'
 
 import sfmchelper from './routes/sfmchelper'
-<<<<<<< Updated upstream
 import sfmc from './routes/sfmc'
 import { RabbitClient } from './utils'
 
 const runApplication = async (): Promise<void> => {
-
   const rabbitClient = RabbitClient.getInstance()
 
   await rabbitClient.connect()
 
-  if(config.get('env') === 'development'){
-    await rabbitClient.initializeProduce('local_producer', 'test_queue')
+  if (config.get('env') === 'development') {
+    await rabbitClient.initializeProduce('local_producer', config.get('queue'))
   }
 
-  const appStateManager = new AppStateManager();
+  const appStateManager = new AppStateManager()
   appStateManager.saveClosableDependecy(rabbitClient)
 
   const app: Express = express()
   const port = process.env.PORT || 3000
-=======
-import sfmc from './routes/sfmc';
->>>>>>> Stashed changes
 
   app.use(express.static('public'))
   app.use(
@@ -50,16 +45,6 @@ import sfmc from './routes/sfmc';
   app.listen(port, () => {
     console.log(`⚡️[server]: Server is running at Port: ${port}`)
   })
-
-<<<<<<< Updated upstream
 }
 
-runApplication();
-
-=======
-app.use('/sfmcHelper', sfmchelper)
-app.use('/sfmc', sfmc)
->>>>>>> Stashed changes
-
-
-
+runApplication()
