@@ -7,7 +7,7 @@
     "build": "npm run clean && tsc && npm run copy-files",
     "clean": "rm -rf ./dist",
     "postinstall": "tsc",
-    "copy-files": "cp -r ./public/ ./dist/ && cp ./api/config/.env.local.json ./dist/api/config/ && cp ./api/swagger.json ./dist/api/",
+    "copy-files": "cp -r ./public/ ./dist/ && cp ./api/config/.env.*.json ./dist/api/config/ && cp ./api/swagger.json ./dist/api/",
     "start": " node dist/api/index.js",
     "dev": "ts-node-dev  --respawn ./api/index.ts",
     "lint": "eslint --ignore-path .eslintignore --ext .js,.ts .",
