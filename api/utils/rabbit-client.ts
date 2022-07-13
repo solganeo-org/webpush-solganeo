@@ -17,7 +17,7 @@ export class RabbitClient {
   static getInstance = () => {
     return (
       RabbitClient.instance ||
-      (RabbitClient.instance = new RabbitClient(config.get('rabbit')))
+      (RabbitClient.instance = new RabbitClient(config.get('RABBIT')))
     )
   }
 

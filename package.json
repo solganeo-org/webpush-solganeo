@@ -11,7 +11,8 @@
     "start": " node dist/api/index.js",
     "dev": "ts-node-dev  --respawn ./api/index.ts",
     "lint": "eslint --ignore-path .eslintignore --ext .js,.ts .",
-    "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\""
+    "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
+    "heroku-local": "npm run build && heroku local"
   },
   "repository": {
     "type": "git",

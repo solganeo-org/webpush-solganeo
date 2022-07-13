@@ -12,12 +12,14 @@ import sfmc from './routes/sfmc'
 import { RabbitClient } from './utils'
 
 const runApplication = async (): Promise<void> => {
+
+  console.log(config)
   const rabbitClient = RabbitClient.getInstance()
 
   await rabbitClient.connect()
 
-  if (config.get('env') === 'development') {
-    await rabbitClient.initializeProduce('local_producer', config.get('queue'))
+  if (config.get('ENV') === 'development') {
+    await rabbitClient.initializeProduce('local_producer', config.get('QUEUE'))
   }
 
   const appStateManager = new AppStateManager()
