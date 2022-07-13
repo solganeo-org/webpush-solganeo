@@ -2,6 +2,9 @@ import express, { Express, Request, Response } from 'express'
 import { config } from './config'
 import bodyParser from 'body-parser'
 import swaggerUi from 'swagger-ui-express'
+import fs from "fs"
+import path from 'path'
+
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const swaggerDocument = require('./swagger.json')
 
@@ -13,7 +16,18 @@ import { RabbitClient } from './utils'
 
 const runApplication = async (): Promise<void> => {
 
-  console.log(config)
+  // copy config file
+
+  const sourceFilePath = path.join('public', 'config-' + config.get('ENV') + '.json');
+  const destinationFilePath =  path.join('public', 'config.json')
+
+  fs.copyFile(sourceFilePath, destinationFilePath, (err) => {
+    if(err) throw err;
+  
+    console.log('File: ' + sourceFilePath + ' pasted inside: ' + destinationFilePath);
+  
+  })
+
   const rabbitClient = RabbitClient.getInstance()
 
   await rabbitClient.connect()

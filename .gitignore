@@ -67,9 +67,11 @@ jspm_packages/
 
 # Yarn Integrity file
 .yarn-integrity
+config-local.json
 
 # dotenv environment variables file
 .env
+.env.*
 .env.*.json
 .env.test
 
