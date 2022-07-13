@@ -5,21 +5,21 @@ import * as path from 'path'
 convict.addFormat(require('convict-format-with-validator').ipaddress)
 
 const config = convict({
-  env: {
+  ENV: {
     doc: 'The application environment.',
-    format: ['production', 'development', 'test'],
+    format: ['production', 'development', 'test', 'local'],
     default: 'local',
     env: 'NODE_ENV',
   },
 
-  queue: {
+  QUEUE: {
     doc: 'Queue channel where messages will be sent',
     format: String,
     default: 'test',
-    env: 'queue',
+    env: 'QUEUE',
   },
 
-  port: {
+  PORT: {
     doc: 'The port to bind.',
     format: 'port',
     default: 3000,
@@ -27,34 +27,34 @@ const config = convict({
     arg: 'port',
   },
 
-  sfmc_client_id: {
+  SFMC_CLIENT_ID: {
     doc: 'Client id to connect to the SFMC API',
     format: String,
     env: `SFMC_CLIENT_ID`,
     default: '',
   },
 
-  sfmc_client_secret: {
+  SFMC_CLIENT_SECRET: {
     doc: 'Client secret to connect to the SFMC API',
     format: String,
     env: `SFMC_CLIENT_SECRET`,
     default: '',
   },
 
-  sfmc_auth_url: {
+  SFMC_AUTH_URL: {
     doc: 'Auth to connect to the SFMC API',
     format: String,
     env: `SFMC_AUTH_URL`,
     default: '',
   },
-  jwt_secret: {
+  JWT_SECRET: {
     doc: 'JWT secret to connect to the SFMC API',
     format: String,
     env: `JWT_SECRET`,
     default: '',
   },
 
-  rabbit: {
+  RABBIT: {
     url: {
       format: String,
       default: 'amqp://localhost',
@@ -63,7 +63,7 @@ const config = convict({
   },
 })
 
-const env = config.get('env')
+const env = config.get('ENV')
 
 if (env == 'local') {
   config.loadFile(path.join(__dirname, '.env.' + env + '.json'))

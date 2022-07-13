@@ -58,7 +58,7 @@ function execute(req: Request, res: Response) {
   const rabbitClient = RabbitClient.getInstance()
   rabbitClient.sendMessage(
     'local_producer',
-    config.get('queue'),
+    config.get('QUEUE'),
     JSON.stringify(payload)
   )
 
