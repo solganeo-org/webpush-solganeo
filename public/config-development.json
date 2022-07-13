@@ -7,14 +7,14 @@
     "type": "REST",
     "lang": {
       "en-US": {
-        "name": "Web Push Notifications",
-        "description": "Web Push Notifications Custom Activity SFMC"
+        "name": "[DEV] Web Push Notifications",
+        "description": "[DEV] Web Push Notifications Custom Activity SFMC"
       }
     },
     "arguments": {
       "execute": {
         "inArguments": [],
-        "url": "https://4957-86-208-104-241.ngrok.io/sfmc/execute",
+        "url": "https://solganeo-api-dev.herokuapp.com/sfmc/execute",
         "outArguments": [],
         "timeout": 100000,
         "retryCount": 1,
@@ -42,22 +42,22 @@
     ],
     "configurationArguments": {
       "save": {
-        "url": "https://4957-86-208-104-241.ngrok.io/sfmc/save",
+        "url": "https://solganeo-api-dev.herokuapp.com/sfmc/save",
         "verb": "POST",
         "useJwt": true
       },
       "publish": {
-        "url": "https://4957-86-208-104-241.ngrok.io/sfmc/publish",
+        "url": "https://solganeo-api-dev.herokuapp.com/sfmc/publish",
         "verb": "POST",
         "useJwt": true
       },
       "validate": {
-        "url": "https://4957-86-208-104-241.ngrok.io/sfmc/validate",
+        "url": "https://solganeo-api-dev.herokuapp.com/sfmc/validate",
         "verb": "POST",
         "useJwt": true
       },
       "stop": {
-        "url": "https://4957-86-208-104-241.ngrok.io/sfmc/stop",
+        "url": "https://solganeo-api-dev.herokuapp.com/sfmc/stop",
         "verb": "POST",
         "useJwt": true
       }
