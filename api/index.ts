@@ -16,6 +16,8 @@ import { RabbitClient } from './utils'
 
 const runApplication = async (): Promise<void> => {
 
+  console.log(config)
+
   // copy config file
 
   const sourceFilePath = path.join('public', 'config-' + config.get('ENV') + '.json');
