@@ -57,7 +57,7 @@ function execute(req: Request, res: Response) {
 
   const rabbitClient = RabbitClient.getInstance()
   rabbitClient.sendMessage(
-    'local_producer',
+    config.get('ENV') + '-webpush-producer',
     config.get('QUEUE'),
     JSON.stringify(payload)
   )
