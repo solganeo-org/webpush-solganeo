@@ -1,7 +1,7 @@
-name: chat-pull-request 
-on:
+name: Google Chat
+on: 
   pull_request:
-    types: [created]
+    types: [opened, reopened, ready_for_review]
 jobs:
   chat:
     runs-on: ubuntu-latest

@@ -1,29 +1,68 @@
-import express, { Express, Request, Response } from 'express';
-import {config} from './config';
-import bodyParser from 'body-parser';
-const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('./swagger.json');
+import express, { Express, Request, Response } from 'express'
+import { config } from './config'
+import bodyParser from 'body-parser'
+import swaggerUi from 'swagger-ui-express'
+import fs from "fs"
+import path from 'path'
 
-import sfmchelper from './routes/sfmchelper';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const swaggerDocument = require('./swagger.json')
 
-console.log(config.get('env'))
+import { AppStateManager } from './utils/app-state-manager'
 
-const app: Express = express();
-const port = process.env.PORT || 3000;
+import sfmchelper from './routes/sfmchelper'
+import sfmc from './routes/sfmc'
+import { RabbitClient } from './utils'
 
-app.use(express.static("public"));
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
-app.use(bodyParser.json());
-app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+const runApplication = async (): Promise<void> => {
 
-app.use("/sfmcHelper", sfmchelper);
+  console.log(config)
 
-app.get('/', (req: Request, res: Response) => {
-    res.render("index", {title: "My Custom Activity"});
-});
+  // copy config file
 
-app.listen(port, () => {
-  console.log(`⚡️[server]: Server is running at Port: ${port}`);
-})
+  const sourceFilePath = path.join('public', 'config-' + config.get('ENV') + '.json');
+  const destinationFilePath =  path.join('public', 'config.json')
+
+  fs.copyFile(sourceFilePath, destinationFilePath, (err) => {
+    if(err) throw err;
+  
+    console.log('File: ' + sourceFilePath + ' pasted inside: ' + destinationFilePath);
+  
+  })
+
+  const rabbitClient = RabbitClient.getInstance()
+
+  await rabbitClient.connect()
+
+  if (config.get('ENV') === 'development') {
+    await rabbitClient.initializeProduce('local_producer', config.get('QUEUE'))
+  }
+
+  const appStateManager = new AppStateManager()
+  appStateManager.saveClosableDependecy(rabbitClient)
+
+  const app: Express = express()
+  const port = process.env.PORT || 3000
+
+  app.use(express.static('public'))
+  app.use(
+    bodyParser.urlencoded({
+      extended: true,
+    })
+  )
+  app.use(bodyParser.json())
+  app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+
+  app.use('/sfmcHelper', sfmchelper)
+  app.use('/sfmc', sfmc)
+
+  app.get('/', (req: Request, res: Response) => {
+    res.render('index', { title: 'My Custom Activity' })
+  })
+
+  app.listen(port, () => {
+    console.log(`⚡️[server]: Server is running at Port: ${port}`)
+  })
+}
+
+runApplication()

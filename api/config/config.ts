@@ -1,53 +1,74 @@
-var convict = require('convict');
-import * as path from 'path';
+import convict from 'convict'
+import * as path from 'path'
 
-convict.addFormat(require('convict-format-with-validator').ipaddress);
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+convict.addFormat(require('convict-format-with-validator').ipaddress)
 
-var config = convict({
+const config = convict({
+  ENV: {
+    doc: 'The application environment.',
+    format: ['production', 'development', 'test', 'local'],
+    default: 'local',
+    env: 'ENV',
+  },
 
-    env: {
-        doc: 'The application environment.',
-        format: ['production', 'development', 'test'],
-        default: 'local',
-        env: 'NODE_ENV'
+  QUEUE: {
+    doc: 'Queue channel where messages will be sent',
+    format: String,
+    default: 'test',
+    env: 'QUEUE',
+  },
+
+  PORT: {
+    doc: 'The port to bind.',
+    format: 'port',
+    default: 3000,
+    env: 'PORT',
+    arg: 'port',
+  },
+
+  SFMC_CLIENT_ID: {
+    doc: 'Client id to connect to the SFMC API',
+    format: String,
+    env: `SFMC_CLIENT_ID`,
+    default: '',
+  },
+
+  SFMC_CLIENT_SECRET: {
+    doc: 'Client secret to connect to the SFMC API',
+    format: String,
+    env: `SFMC_CLIENT_SECRET`,
+    default: '',
+  },
+
+  SFMC_AUTH_URL: {
+    doc: 'Auth to connect to the SFMC API',
+    format: String,
+    env: `SFMC_AUTH_URL`,
+    default: '',
+  },
+  JWT_SECRET: {
+    doc: 'JWT secret to connect to the SFMC API',
+    format: String,
+    env: `JWT_SECRET`,
+    default: '',
+  },
+
+  RABBIT: {
+    url: {
+      format: String,
+      default: 'amqp://localhost',
+      env: 'RABBIT_URL',
     },
-
-    port: {
-        doc: 'The port to bind.',
-        format: 'port',
-        default: 3000,
-        env: 'PORT',
-        arg: 'port'
-      },
-
-    sfmc_client_id: {
-        doc: 'Client id to connect to the SFMC API',
-        format: String,
-        env: `SFMC_CLIENT_ID`,
-        default: ""
-    },
-
-    sfmc_client_secret: {
-        doc: 'Client secret to connect to the SFMC API',
-        format: String,
-        env: `SFMC_CLIENT_SECRET`,
-        default: ""
-    },
-
-    sfmc_auth_url: {
-        doc: 'Client secret to connect to the SFMC API',
-        format: String,
-        env: `SFMC_AUTH_URL`,
-        default: ""
-    }
+  },
 })
 
-var env = config.get('env');
+const env = config.get('ENV')
 
-if(env == "local") {
-    config.loadFile(path.join(__dirname, '.env.'+ env + '.json'));
+if (env == 'local') {
+  config.loadFile(path.join(__dirname, '.env.' + env + '.json'))
 }
 
 // Perform validation
-config.validate({allowed: 'strict'});
-export {config};
+config.validate({ allowed: 'strict' })
+export { config }
