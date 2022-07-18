@@ -28,3 +28,24 @@ You can find all those variables inside your installed package on sfmc. 👍
 ```
 
 To have a more detail documentation, please visit the following link 😁 https://doc.clickup.com/20410493/d/kew3x-962/web-push-documentation
+
+## Run using Heroku Local
+
+
+1. Install Heroku cli https://devcenter.heroku.com/articles/heroku-cli
+2. Create `.env` file:
+
+```
+ENV=local
+PORT=3000
+SFMC_CLIENT_ID=k5gez************sdczrts
+SFMC_CLIENT_SECRET**********GgVod
+SFMC_AUTH=https://mcjnmn9mfnxq4m36wvmtt59plqg1.auth.marketingcloudapis.com/v2/token
+JWT_SECRET=WJKctvO_n7Uth8********************wUNEFUPfzuADqnpTbm1PUgzLsLdbgwHVAfMxphXQ7_ZhhR7nLiwRMCUBaRaOzAqtRQICqlQy6bqZUcVdKvvpee1z_2iFnrjT72uYRrBieI2lnwawgi7o0GItOMYTHBVbQ86PIvgh7YmjURWembXszzc3IChXr3pA2
+QUEUE=webpush
+```
+
+3. Run `npm run build` (This command will build the application by replacing .dist folder)
+4. Launch the app using `heroku local --env=./`.env or just `heroku local` if you dont want to specify any .env file. 🚀
+5. Another alternative is just execute `npm run heroku-local`
+
